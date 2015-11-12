@@ -10,28 +10,25 @@ html(lang="en")
   body
     .container
       .row
-        h1= title
-      .row
-        //- each val, prop in contacts[0]
-        //-   label #{prop}
-        //-   input(id= prop)
-        button.btn#add(  data-toggle="modal" data-target="#formModal" ) Add
+        .col-xs-6
+          h1= title
+        .col-xs-6
+          button.btn#add(  data-toggle="modal" data-target="#formModal" ) Add
       .row
         table.table.table-hover
           thead
             tr
               each val, prop in contacts[0]
                 th= prop
-              th.edit edit
-              th.delete del
+              th.edit.text-center edit
+              th.delete.text-center delete
           tbody#contactList
             each contact in contacts
               tr
                 each val, index in contact
-                  td(id= index)= val
-                td.text-center
-                  a.edit(href="#!" data-toggle="modal" data-target="#formModal")
-                    i.fa.fa-pencil-square-o.fa-lg
+                  td(class= index)= val
+                td.text-center.edit(href="#!" data-toggle="modal" data-target="#formModal")
+                  i.fa.fa-pencil-square-o.fa-lg
                 td.delete.text-center
                   i.fa.fa-trash-o.fa-lg
         #formModal.modal.fade

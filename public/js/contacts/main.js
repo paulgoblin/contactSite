@@ -6,7 +6,7 @@ function init() {
 
   $('button#saveContact').click(submitContact);
   $('button#add').click(newForm);
-  $('#contactList').on('click', 'a.edit', populateModal);
+  $('#contactList').on('click', 'td.edit', populateModal);
   $('#contactList').on('click', 'td.delete', deletePrompt);
 }
 
@@ -26,7 +26,6 @@ function deletePrompt (e) {
 }
 
 function deleteContact (e) {
-  console.log("deleteing contact")
   var $tr = $(e.target).closest('tr');
   var id = $tr.index();
 
@@ -99,8 +98,6 @@ function addContact(contact) {
 
 function contactRow(contact) {
 
-  console.log("rowmaker contact: ", contact)
-
   let editBtnAttr = {
     "class":"edit text-center",
     "data-toggle":"modal",
@@ -126,26 +123,26 @@ function contactRow(contact) {
  
 function newForm() {
   $('.modal-body input').val('');
-  $('textarea').text('');
+  $('textarea').val('');
   $('.btn#saveContact').data('id',0);
 }
 
 
 function populateModal (e) {
+  // e.stopPropagation()
   newForm();
   var $tr = $(e.target).closest('tr');
-  var name = $tr.find('td#name').text();
-  var email = $tr.find('td#email').text();
-  var phone = $tr.find('td#phone').text();
-  var address = $tr.find('td#address').text();
+  var name = $tr.find('td.name').text();
+  var email = $tr.find('td.email').text();
+  var phone = $tr.find('td.phone').text();
+  var address = $tr.find('td.address').text();
 
   var rowIndex = $tr.index() + 1;
-  console.log(rowIndex)
   $('.btn#saveContact').data('id',rowIndex)
 
   $('input#name').val(name)
   $('input#email').val(email)
   $('input#phone').val(phone)
-  $('textarea#address').text(address)
+  $('textarea#address').val(address)
 
 }
